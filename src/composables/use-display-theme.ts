@@ -2,15 +2,15 @@ import { Ref, ref, readonly } from 'vue'
 
 const debug = false
 
-type DisplayMode = 'Dark' | 'Light' | 'Auto'
+type DisplayTheme = 'Dark' | 'Light' | 'Auto'
 
-const currentDisplayMode: Ref<DisplayMode> = ref('Auto')
+const currentDisplayTheme: Ref<DisplayTheme> = ref('Auto')
 
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
 
-function setDisplayMode(setting: DisplayMode) {
+function setDisplayTheme(setting: DisplayTheme) {
   if (debug) console.log('systemToggleDarkTheme triggered', setting)
-  currentDisplayMode.value = setting
+  currentDisplayTheme.value = setting
   switch (setting) {
     case 'Auto': {
       document.body.classList.toggle('dark', systemPrefersDark.matches)
@@ -26,12 +26,12 @@ function setDisplayMode(setting: DisplayMode) {
     }
   }
 }
-setDisplayMode(currentDisplayMode.value)
+setDisplayTheme(currentDisplayTheme.value)
 
 function systemDisplaySettingChanged() {
   if (debug) console.log('systemDisplaySettingChanged triggered')
-  if (currentDisplayMode.value === 'Auto') {
-    setDisplayMode('Auto')
+  if (currentDisplayTheme.value === 'Auto') {
+    setDisplayTheme('Auto')
   }
 }
 
@@ -40,7 +40,7 @@ systemPrefersDark.addListener(() => systemDisplaySettingChanged())
 
 export default function() {
   return {
-    displayMode: readonly(currentDisplayMode),
-    setDisplayMode,
+    displayTheme: readonly(currentDisplayTheme),
+    setDisplayTheme,
   }
 }

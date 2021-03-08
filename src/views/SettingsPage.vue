@@ -1,17 +1,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { IonSegment, IonSegmentButton } from '@ionic/vue'
-import useDarkMode from '@/composables/use-dark-mode'
+import useDisplayTheme from '@/composables/use-display-theme'
 
 export default defineComponent({
   name: 'Settings',
   components: { IonSegment, IonSegmentButton },
   setup() {
-    const { displayMode, setDisplayMode } = useDarkMode()
+    const { displayTheme, setDisplayTheme } = useDisplayTheme()
 
     return {
-      displayMode,
-      setDisplayMode,
+      displayTheme,
+      setDisplayTheme,
     }
   },
 })
@@ -20,8 +20,8 @@ export default defineComponent({
 <template>
   <div>
     <ion-segment
-      :value="displayMode"
-      @ionChange="setDisplayMode($event.detail.value)"
+      :value="displayTheme"
+      @ionChange="setDisplayTheme($event.detail.value)"
     >
       <ion-segment-button
         v-for="mode in ['Auto', 'Dark', 'Light']"
