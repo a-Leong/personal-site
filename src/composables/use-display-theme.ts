@@ -2,36 +2,41 @@ import { Ref, ref, readonly } from 'vue'
 
 const debug = false
 
-type DisplayTheme = 'Dark' | 'Light' | 'Auto'
+type DisplayMode = 'light' | 'dark' | 'auto'
+type DisplayTheme = 'light' | 'dark'
 
-const currentDisplayTheme: Ref<DisplayTheme> = ref('Auto')
+const currentDisplayMode: Ref<DisplayMode> = ref('auto')
+const currentDisplayTheme: Ref<DisplayTheme> = ref('light')
 
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
 
-function setDisplayTheme(setting: DisplayTheme) {
+function setDisplayMode(setting: DisplayMode) {
   if (debug) console.log('systemToggleDarkTheme triggered', setting)
-  currentDisplayTheme.value = setting
+  currentDisplayMode.value = setting
   switch (setting) {
-    case 'Auto': {
+    case 'auto': {
+      currentDisplayTheme.value = systemPrefersDark.matches ? 'dark' : 'light'
       document.body.classList.toggle('dark', systemPrefersDark.matches)
       break
     }
-    case 'Dark': {
+    case 'dark': {
+      currentDisplayTheme.value = setting
       document.body.classList.toggle('dark', true)
       break
     }
-    case 'Light': {
+    case 'light': {
+      currentDisplayTheme.value = setting
       document.body.classList.toggle('dark', false)
       break
     }
   }
 }
-setDisplayTheme(currentDisplayTheme.value)
+setDisplayMode(currentDisplayMode.value)
 
 function systemDisplaySettingChanged() {
   if (debug) console.log('systemDisplaySettingChanged triggered')
-  if (currentDisplayTheme.value === 'Auto') {
-    setDisplayTheme('Auto')
+  if (currentDisplayMode.value === 'auto') {
+    setDisplayMode('auto')
   }
 }
 
@@ -40,7 +45,8 @@ systemPrefersDark.addListener(() => systemDisplaySettingChanged())
 
 export default function() {
   return {
+    displayMode: readonly(currentDisplayMode),
     displayTheme: readonly(currentDisplayTheme),
-    setDisplayTheme,
+    setDisplayMode,
   }
 }

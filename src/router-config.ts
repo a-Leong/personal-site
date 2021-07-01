@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomePage from './views/HomePage.vue'
-import SettingsPage from './views/SettingsPage.vue'
+import NotFoundPage from './views/NotFoundPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,9 +9,8 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage,
   },
   {
-    path: '/settings',
-    name: 'Settings',
-    component: SettingsPage,
+    path: '/:pathMatch(.*)',
+    component: NotFoundPage,
   },
 ]
 

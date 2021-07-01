@@ -1,0 +1,235 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'NotFoundPage',
+})
+</script>
+
+<template>
+  <div class="banner-fullscreen noselect">
+    <span style=";color:#aaa;background-color:#fff"
+      >&#160;&#160;.&#160;&#160;&#160;&#160;.&#160;&#160;&#160;.&#160;.&#160;&#160;&#160;.&#160;&#160;&#160;&#160;.&#160;&#160;&#160;&#160;&#160;.&#160;&#160;..&#160;&#160;&#160;..&#160;.&#160;&#160;.&#160;&#160;&#160;.&#160;&#160;&#160;&#160;.&#160;&#160;.&#160;&#160;.&#160;&#160;&#160;.&#160;&#160;&#160;&#160;..&#160;.&#160;&#160;&#160;&#160;&#160;&#160;.&#160;&#160;&#160;</span
+    >
+    <br />
+    <span style=";color:#aaa;background-color:#fff">&#160;.;</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#f55;background-color:#aaa">X</span>
+    <span style=";color:#aaa;background-color:#f55">8</span>
+    <span style=";color:#f55;background-color:#aaa">X</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">8;&#160;&#160;..</span>
+    <span style=";color:#aaa;background-color:#ff5">;</span>
+    <span style=";color:#aaa;background-color:#fff">:</span>
+    <span style=";color:#aaa;background-color:#ff5">:</span>
+    <span style=";color:#aaa;background-color:#fff">..&#160;.&#160;t8</span>
+    <span style=";color:#fff;background-color:#aaa">%%X</span>
+    <span style=";color:#aaa;background-color:#fff">8:&#160;&#160;&#160;8</span>
+    <span style=";color:#5ff;background-color:#aaa">X</span>
+    <span style=";color:#aaa;background-color:#55f">8</span>
+    <span style=";color:#0aa;background-color:#aaa">8</span>
+    <span style=";color:#5ff;background-color:#aaa">@</span>
+    <span style=";color:#fff;background-color:#aaa">.</span>
+    <span style=";color:#aaa;background-color:#fff">:&#160;&#160;&#160;.</span>
+    <span style=";color:#aaa;background-color:#f5f">t</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#f5f">&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">;..&#160;.;</span>
+    <span style=";color:#fff;background-color:#aaa">X</span>
+    <span style=";color:#ff5;background-color:#aaa">8</span>
+    <span style=";color:#a50;background-color:#aaa">8</span>
+    <span style=";color:#ff5;background-color:#aaa">8</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">S..&#160;@</span>
+    <span style=";color:#555;background-color:#aaa">8</span>
+    <span style=";color:#a0a;background-color:#555">&#160;&#160;&#160;</span>
+    <span style=";color:#555;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#fff"
+      >X&#160;.&#160;;@888X.&#160;&#160;</span
+    >
+    <br />
+    <span style=";color:#aaa;background-color:#fff">&#160;%</span>
+    <span style=";color:#a0a;background-color:#f55">&#160;</span>
+    <span style=";color:#a00;background-color:#f55">&#160;</span>
+    <span style=";color:#f5f;background-color:#f55">X</span>
+    <span style=";color:#ff5;background-color:#f55">S</span>
+    <span style=";color:#f5f;background-color:#f55">%</span>
+    <span style=";color:#a00;background-color:#f55">&#160;&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">8%:</span>
+    <span style=";color:#a50;background-color:#ff5">&#160;</span>
+    <span style=";color:#aaa;background-color:#ff5">t;;;;;</span>
+    <span style=";color:#aaa;background-color:#fff">.&#160;8</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#f5f;background-color:#aaa">%</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">t&#160;</span>
+    <span style=";color:#0aa;background-color:#aaa">S</span>
+    <span style=";color:#00a;background-color:#55f">&#160;&#160;</span>
+    <span style=";color:#0aa;background-color:#55f"
+      >&#160;&#160;&#160;&#160;</span
+    >
+    <span style=";color:#aaa;background-color:#5ff">8</span>
+    <span style=";color:#aaa;background-color:#fff">:.</span>
+    <span style=";color:#aaa;background-color:#f5f">;</span>
+    <span style=";color:#a0a;background-color:#f5f">:</span>
+    <span style=";color:#aaa;background-color:#f5f">%:%</span>
+    <span style=";color:#a0a;background-color:#f5f">&#160;.</span>
+    <span style=";color:#f5f;background-color:#aaa">X</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;%</span>
+    <span style=";color:#ff5;background-color:#a50">.</span>
+    <span style=";color:#f55;background-color:#a50">88</span>
+    <span style=";color:#ff5;background-color:#a50">:</span>
+    <span style=";color:#a50;background-color:#f55">t</span>
+    <span style=";color:#ff5;background-color:#a50">%</span>
+    <span style=";color:#f55;background-color:#a50">8</span>
+    <span style=";color:#fff;background-color:#aaa">8</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;</span>
+    <span style=";color:#fff;background-color:#aaa">%</span>
+    <span style=";color:#a00;background-color:#000">:</span>
+    <span style=";color:#0a0;background-color:#000">.</span>
+    <span style=";color:#00a;background-color:#000">:</span>
+    <span style=";color:#a00;background-color:#000">.</span>
+    <span style=";color:#00a;background-color:#000">:</span>
+    <span style=";color:#a00;background-color:#000">.</span>
+    <span style=";color:#00a;background-color:#000">;</span>
+    <span style=";color:#fff;background-color:#aaa">8</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;@</span>
+    <span style=";color:#fff;background-color:#aaa">%</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#fff">8</span>
+    <span style=";color:#aaa;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#fff">8</span>
+    <span style=";color:#aaa;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#fff">8S&#160;</span>
+    <br />
+    <span style=";color:#aaa;background-color:#fff">&#160;%</span>
+    <span style=";color:#a0a;background-color:#f55">&#160;</span>
+    <span style=";color:#aaa;background-color:#f55">8</span>
+    <span style=";color:#a50;background-color:#f55">&#160;</span>
+    <span style=";color:#aaa;background-color:#f55">8</span>
+    <span style=";color:#a00;background-color:#f55">&#160;</span>
+    <span style=";color:#aaa;background-color:#f55">8</span>
+    <span style=";color:#a00;background-color:#f55">&#160;</span>
+    <span style=";color:#f55;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#fff">.:</span>
+    <span style=";color:#a50;background-color:#ff5">&#160;</span>
+    <span style=";color:#aaa;background-color:#ff5">%:;</span>
+    <span style=";color:#fff;background-color:#ff5">8</span>
+    <span style=";color:#aaa;background-color:#ff5">t;</span>
+    <span style=";color:#aaa;background-color:#fff">:&#160;</span>
+    <span style=";color:#fff;background-color:#aaa">%&#160;&#160;</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#f5f;background-color:#aaa">%</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">X&#160;</span>
+    <span style=";color:#55f;background-color:#aaa">8</span>
+    <span style=";color:#0aa;background-color:#55f">&#160;</span>
+    <span style=";color:#5ff;background-color:#0aa">;</span>
+    <span style=";color:#5ff;background-color:#55f">8</span>
+    <span style=";color:#0aa;background-color:#55f">.</span>
+    <span style=";color:#0aa;background-color:#5ff">:</span>
+    <span style=";color:#00a;background-color:#55f">..</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;&#160;</span>
+    <span style=";color:#aaa;background-color:#f5f">tS%SSX</span>
+    <span style=";color:#a0a;background-color:#f5f">&#160;</span>
+    <span style=";color:#aaa;background-color:#f5f">%</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;%</span>
+    <span style=";color:#f55;background-color:#a50">8</span>
+    <span style=";color:#a50;background-color:#ff5">S</span>
+    <span style=";color:#aaa;background-color:#a50">8</span>
+    <span style=";color:#f55;background-color:#a50">8</span>
+    <span style=";color:#aaa;background-color:#ff5">@</span>
+    <span style=";color:#555;background-color:#a50">8</span>
+    <span style=";color:#ff5;background-color:#a50">.</span>
+    <span style=";color:#ff5;background-color:#aaa">X</span>
+    <span style=";color:#aaa;background-color:#fff">.</span>
+    <span style=";color:#555;background-color:#aaa">;</span>
+    <span style=";color:#a00;background-color:#000">::</span>
+    <span style=";color:#00a;background-color:#000">:</span>
+    <span style=";color:#a00;background-color:#000">.</span>
+    <span style=";color:#0a0;background-color:#000">.</span>
+    <span style=";color:#a00;background-color:#000">;</span>
+    <span style=";color:#0a0;background-color:#000">:</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;8</span>
+    <span style=";color:#aaa;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#fff">8</span>
+    <span style=";color:#aaa;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#fff">8</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#fff">8</span>
+    <span style=";color:#aaa;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;&#160;</span>
+    <br />
+    <span style=";color:#aaa;background-color:#fff">&#160;&#160;8</span>
+    <span style=";color:#aaa;background-color:#f55">8</span>
+    <span style=";color:#f5f;background-color:#f55">S</span>
+    <span style=";color:#a50;background-color:#f55">&#160;</span>
+    <span style=";color:#aaa;background-color:#f55">8</span>
+    <span style=";color:#f5f;background-color:#f55">S</span>
+    <span style=";color:#fff;background-color:#aaa">&#160;</span>
+    <span style=";color:#aaa;background-color:#fff">@&#160;.;</span>
+    <span style=";color:#aaa;background-color:#ff5">;</span>
+    <span style=";color:#fff;background-color:#ff5">8</span>
+    <span style=";color:#aaa;background-color:#ff5">tt</span>
+    <span style=";color:#fff;background-color:#ff5">8</span>
+    <span style=";color:#aaa;background-color:#fff">:&#160;.t8</span>
+    <span style=";color:#f5f;background-color:#aaa">S</span>
+    <span style=";color:#ff5;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#ff5">8</span>
+    <span style=";color:#fff;background-color:#f5f">8</span>
+    <span style=";color:#aaa;background-color:#fff">8;&#160;;</span>
+    <span style=";color:#5ff;background-color:#aaa">8</span>
+    <span style=";color:#00a;background-color:#55f">&#160;</span>
+    <span style=";color:#0aa;background-color:#55f">.</span>
+    <span style=";color:#55f;background-color:#0aa">8</span>
+    <span style=";color:#a0a;background-color:#55f">:</span>
+    <span style=";color:#0aa;background-color:#aaa">X</span>
+    <span style=";color:#aaa;background-color:#fff">8.&#160;&#160;</span>
+    <span style=";color:#aaa;background-color:#f5f">%%S%SX</span>
+    <span style=";color:#aaa;background-color:#fff">&#160;&#160;&#160;8</span>
+    <span style=";color:#f55;background-color:#a50">8</span>
+    <span style=";color:#aaa;background-color:#a50">@</span>
+    <span style=";color:#ff5;background-color:#a50">.</span>
+    <span style=";color:#a50;background-color:#f55">;</span>
+    <span style=";color:#aaa;background-color:#ff5">@</span>
+    <span style=";color:#ff5;background-color:#aaa">S</span>
+    <span style=";color:#aaa;background-color:#fff">%.;</span>
+    <span style=";color:#555;background-color:#aaa">8</span>
+    <span style=";color:#555;background-color:#000">@</span>
+    <span style=";color:#a00;background-color:#000">.</span>
+    <span style=";color:#00a;background-color:#000">.:</span>
+    <span style=";color:#555;background-color:#000">8</span>
+    <span style=";color:#555;background-color:#aaa">@</span>
+    <span style=";color:#aaa;background-color:#fff">..t88</span>
+    <span style=";color:#f5f;background-color:#fff">8</span>
+    <span style=";color:#55f;background-color:#5ff">8</span>
+    <span style=";color:#f5f;background-color:#fff">8</span>
+    <span style=";color:#5ff;background-color:#fff">8</span>
+    <span style=";color:#aaa;background-color:#fff">8;&#160;</span>
+    <br />
+    <span style=";color:#aaa;background-color:#fff"
+      >&#160;&#160;.&#160;&#160;&#160;.&#160;.&#160;.&#160;&#160;&#160;..&#160;.&#160;.&#160;;t;%;;.:.&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;.&#160;.&#160;&#160;&#160;...&#160;&#160;&#160;&#160;&#160;&#160;.&#160;&#160;:.&#160;&#160;..&#160;t@t&#160;.&#160;&#160;.%Xt&#160;t.::&#160;</span
+    >
+    <br />
+  </div>
+</template>
+
+<style scoped>
+.banner-fullscreen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 1vw;
+  font-family: monospace;
+  font-weight: bold;
+}
+</style>

@@ -13,7 +13,8 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/no-deprecated-slot-attribute': 'off', // This rule conflicts with Ionic's slot attribute
+    'vue/no-deprecated-slot-attribute': 'off', // Rule conflicts with Ionic's slot attribute
+    'no-unused-vars': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
 
   extends: [
