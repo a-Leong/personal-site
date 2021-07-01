@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import { createAnimation } from '@ionic/core'
 
 import Banner from '@/components/Banner.vue'
 
@@ -7,6 +8,35 @@ export default defineComponent({
   name: 'Home',
   components: {
     Banner,
+  },
+  setup() {
+    const askew = ref(true)
+    const peaceRef = ref()
+    const peaceAnim = ref()
+
+    onMounted(() => {
+      peaceAnim.value = createAnimation()
+        .addElement(peaceRef.value)
+        .duration(400)
+        .keyframes([
+          { offset: 0, transform: 'translateX(-50%) rotate(12deg)' },
+          { offset: 0.3, transform: 'translateX(-50%) rotate(-5deg)' },
+          { offset: 1, transform: 'translateX(-50%) rotate(0)' },
+        ])
+    })
+
+    function handlePeaceClicked() {
+      if (peaceAnim.value !== undefined && askew.value) {
+        askew.value = false
+        peaceAnim.value.play()
+      }
+    }
+
+    return {
+      peaceRef,
+
+      handlePeaceClicked,
+    }
   },
 })
 </script>
@@ -35,7 +65,13 @@ export default defineComponent({
         </p>
       </div>
     </div>
-    <img src="../assets/peace.svg" alt="peace" class="hidden-peace" />
+    <img
+      ref="peaceRef"
+      src="../assets/peace.svg"
+      @click="handlePeaceClicked"
+      alt="peace"
+      class="peace"
+    />
   </ion-content>
 </template>
 
@@ -44,12 +80,11 @@ export default defineComponent({
   margin: auto;
 }
 
-.hidden-peace {
+.peace {
   height: 100px;
   width: 100px;
   position: sticky;
-  top: -150px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(12deg);
 }
 </style>
