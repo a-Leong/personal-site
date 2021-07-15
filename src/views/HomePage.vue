@@ -28,6 +28,7 @@ export default defineComponent({
     function handlePeaceClicked() {
       if (peaceAnim.value !== undefined && askew.value) {
         askew.value = false
+        peaceRef.value.style.cursor = 'default'
         peaceAnim.value.play()
       }
     }
@@ -70,7 +71,7 @@ export default defineComponent({
       src="../assets/peace.svg"
       @click="handlePeaceClicked"
       alt="peace"
-      class="peace"
+      class="peace nodrag noselect"
     />
   </ion-content>
 </template>
@@ -81,6 +82,7 @@ export default defineComponent({
 }
 
 .peace {
+  cursor: vertical-text;
   height: 100px;
   width: 100px;
   position: sticky;

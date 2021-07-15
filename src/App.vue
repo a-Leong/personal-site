@@ -60,4 +60,12 @@ export default defineComponent({
   user-select: none; /* Non-prefixed version, currently
                         supported by Chrome, Edge, Opera and Firefox */
 }
+
+.nodrag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
 </style>
