@@ -1,12 +1,16 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomePage from './views/HomePage.vue'
 import NotFoundPage from './views/NotFoundPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: HomePage,
+  },
+  {
+    path: '/',
+    redirect: '/home',
   },
   {
     path: '/:pathMatch(.*)',
@@ -15,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 })
 
