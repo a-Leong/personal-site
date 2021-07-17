@@ -82,7 +82,7 @@ export default defineComponent({
 }
 
 .peace {
-  cursor: vertical-text;
+  cursor: url('../assets/happy-face.cur'), pointer;
   height: 100px;
   width: 100px;
   position: sticky;
