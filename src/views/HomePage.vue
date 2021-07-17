@@ -51,8 +51,8 @@ export default defineComponent({
       </div>
       <div>
         <p>
-          Professionally, I've been a software engineer for three years. Right
-          now I work at
+          Professionally, I'm a software engineer; I have been for three years.
+          Right now I work at
           <a href="http://www.ori.org/research">Oregon Research Institute</a>
           and
           <a href="https://influentsin.com/">Influents Innovations</a>. My focus
