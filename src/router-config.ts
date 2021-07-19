@@ -4,13 +4,9 @@ import NotFoundPage from './views/NotFoundPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: HomePage,
-  },
-  {
-    path: '/',
-    redirect: '/home',
   },
   {
     path: '/:pathMatch(.*)',
