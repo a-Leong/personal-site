@@ -59,8 +59,8 @@ export default defineComponent({
           <a href="http://www.ori.org/research">Oregon Research Institute</a>
           and
           <a href="https://influentsin.com/">Influents Innovations</a> where I
-          build and maintain web apps. Academic background in game-playing
-          artificial intelligence and computer graphics.
+          build and maintain web and mobile apps. Academic background in
+          game-playing artificial intelligence and computer graphics.
         </p>
         <p>This website is currently under development.</p>
         <p><a href="mailto:alexleong7@gmail.com">alexleong7@gmail.com</a></p>
