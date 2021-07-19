@@ -28,17 +28,25 @@ export default defineComponent({
   <ion-app>
     <ion-page>
       <router-view />
-      <ion-fab horizontal="end" vertical="bottom">
-        <ion-fab-button @click="toggleDisplayTheme" color="light">
-          <ion-icon v-show="displayTheme === 'dark'" name="sunny" />
-          <ion-icon v-show="displayTheme === 'light'" name="moon" />
-        </ion-fab-button>
-      </ion-fab>
     </ion-page>
   </ion-app>
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@600;700&family=Montserrat&display=swap');
+
+h1 {
+  font-family: 'Fira Code', monospace;
+}
+
+span {
+  font-family: 'Fira Code', monospace;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .max-width-sm {
   max-width: 576px;
 }
