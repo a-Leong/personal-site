@@ -10,7 +10,7 @@ export default defineComponent({
   <ion-content>
     <div class="not-found-message ion-text-center ion-padding">
       <h1><ion-text color="dark">404</ion-text></h1>
-      <router-link to="/">home</router-link>
+      <router-link to="/"><p>home</p></router-link>
     </div>
   </ion-content>
 </template>
