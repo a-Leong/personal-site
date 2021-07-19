@@ -34,6 +34,7 @@ export default defineComponent({
     }
 
     return {
+      askew,
       peaceRef,
 
       handlePeaceClicked,
@@ -43,15 +44,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <ion-content>
-    <banner />
+  <ion-header class="ion-no-border">
+    <banner :shouldFall="!askew" />
+  </ion-header>
+
+  <ion-content fullscreen>
     <div class="about-wrapper ion-padding max-width-md">
       <div class="ion-text-center">
-        <h1>Hi, I'm Alex</h1>
+        <h1>Hi, I'm Alex.</h1>
       </div>
       <div>
         <p>
-          I'm a software engineer, and I have been for three years. Right now I
+          I'm a software engineer and I have been for three years. Right now I
           work at
           <a href="http://www.ori.org/research">Oregon Research Institute</a>
           and
@@ -60,10 +64,7 @@ export default defineComponent({
           artificial intelligence and computer graphics.
         </p>
         <p>This website is currently under development.</p>
-        <p>
-          Reach out via email, if you like:
-          <a href="mailto:alexleong7@gmail.com">alexleong7@gmail.com</a>.
-        </p>
+        <p><a href="mailto:alexleong7@gmail.com">alexleong7@gmail.com</a></p>
       </div>
     </div>
     <img
@@ -85,7 +86,7 @@ export default defineComponent({
   cursor: url('../assets/happy-face.cur'), pointer;
   height: 100px;
   width: 100px;
-  position: sticky;
+  position: relative;
   left: 50%;
   transform: translateX(-50%) rotate(12deg);
 }
