@@ -51,16 +51,15 @@ export default defineComponent({
   <ion-content fullscreen>
     <div class="about-wrapper ion-padding max-width-md">
       <div class="ion-text-center">
-        <h1>Hi, I'm Alex.</h1>
+        <h1>Hi, I'm Alex:</h1>
       </div>
       <div>
         <p>
-          I'm a software engineer and I have been for three years. Right now I
-          work at
+          Software engineer for three years. Working at
           <a href="http://www.ori.org/research">Oregon Research Institute</a>
           and
-          <a href="https://influentsin.com/">Influents Innovations</a>. My focus
-          is web development, but I have an academic background in game-playing
+          <a href="https://influentsin.com/">Influents Innovations</a> where I
+          build and maintain web apps. Academic background in game-playing
           artificial intelligence and computer graphics.
         </p>
         <p>This website is currently under development.</p>
