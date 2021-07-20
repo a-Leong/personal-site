@@ -12,6 +12,11 @@ export default defineComponent({
   },
   setup(props) {
     const delays = ref()
+    const tl = anime.timeline({
+      easing: 'cubicBezier(0.86, 0.1, 0.77, 0.78)',
+      duration: 9500,
+    })
+
     onMounted(() => {
       const spans = document.querySelectorAll('.pix')
       delays.value = Array.from(spans.keys())
@@ -20,19 +25,10 @@ export default defineComponent({
           return 1 - Math.sqrt(1 - Math.pow(x, 2))
         })
         .sort(() => Math.random() - 0.5)
-    })
 
-    function fall(delay = 500) {
-      anime({
-        targets: '.pix-cage',
-        opacity: 0,
-        duration: 500,
-        easing: 'linear',
-        delay,
-      })
-      anime({
+      tl.add({
         targets: '.pix',
-        translateY: '110vh',
+        translateY: '100vh',
         rotate: function() {
           const rand = Math.random()
           if (rand > 0.75) {
@@ -42,17 +38,25 @@ export default defineComponent({
           }
         },
         duration: 2000,
-        easing: 'cubicBezier(0.86, 0.1, 0.77, 0.78)',
         delay: function(_: HTMLElement, i: number) {
-          return delay + 500 + delays.value[i] * 10000
+          return 500 + delays.value[i] * 8000
         },
       })
-    }
+
+      tl.add({
+        targets: '.pix',
+        rotate: '0',
+        duration: 1000,
+        delay: function(_: HTMLElement, i: number) {
+          return delays.value[i] * 500
+        },
+      })
+      tl.pause()
+    })
 
     watch(
       () => props.shouldFall,
-      () => fall(),
-      { immediate: true },
+      () => tl.play(),
     )
   },
 })
@@ -60,10 +64,6 @@ export default defineComponent({
 
 <template>
   <div class="banner">
-    <span class="pix-cage" style=";color:#777;"
-      >&#160;&#160;.&#160;&#160;&#160;&#160;.&#160;&#160;&#160;.&#160;.&#160;&#160;&#160;.&#160;&#160;&#160;&#160;.&#160;&#160;&#160;&#160;&#160;.&#160;&#160;..&#160;&#160;&#160;..&#160;.&#160;&#160;.&#160;&#160;&#160;.&#160;&#160;&#160;&#160;.&#160;&#160;.&#160;&#160;.&#160;&#160;&#160;.&#160;&#160;&#160;&#160;..&#160;.&#160;&#160;&#160;&#160;&#160;&#160;.&#160;&#160;&#160;</span
-    >
-    <br />
     <span class="pix" style=";color:#777;">&#160;.;</span>
     <span class="pix" style=";color:#fff;background-color:#777">&#160;</span>
     <span class="pix" style=";color:#f55;background-color:#777">X</span>
@@ -275,11 +275,6 @@ export default defineComponent({
     <span class="pix" style=";color:#f5f;">8</span>
     <span class="pix" style=";color:#5ff;">8</span>
     <span class="pix" style=";color:#777;">8;&#160;</span>
-    <br />
-    <span class="pix-cage" style=";color:#777;"
-      >&#160;&#160;.&#160;&#160;&#160;.&#160;.&#160;.&#160;&#160;&#160;..&#160;.&#160;.&#160;;t;%;;.:.&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;.&#160;.&#160;&#160;&#160;...&#160;&#160;&#160;&#160;&#160;&#160;.&#160;&#160;:.&#160;&#160;..&#160;t@t&#160;.&#160;&#160;.%Xt&#160;t.::&#160;</span
-    >
-    <br />
   </div>
 </template>
 
@@ -292,6 +287,8 @@ export default defineComponent({
 }
 
 .banner {
+  position: absolute;
+  top: -11.4vw;
   z-index: 10;
   width: 100%;
   text-align: center;

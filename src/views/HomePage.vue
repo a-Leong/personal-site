@@ -11,12 +11,13 @@ export default defineComponent({
   },
   setup() {
     const askew = ref(true)
-    const peaceRef = ref()
-    const peaceAnim = ref()
+    const actionRef = ref()
+    const actionAnim = ref()
+    const actionLabel = ref("Don't be afraid")
 
     onMounted(() => {
-      peaceAnim.value = createAnimation()
-        .addElement(peaceRef.value)
+      actionAnim.value = createAnimation()
+        .addElement(actionRef.value)
         .duration(400)
         .keyframes([
           { offset: 0, transform: 'translateX(-50%) rotate(12deg)' },
@@ -25,19 +26,21 @@ export default defineComponent({
         ])
     })
 
-    function handlePeaceClicked() {
-      if (peaceAnim.value !== undefined && askew.value) {
+    function handleactionClicked() {
+      if (actionAnim.value !== undefined && askew.value) {
         askew.value = false
-        peaceRef.value.style.cursor = 'default'
-        peaceAnim.value.play()
+        actionRef.value.style.cursor = 'default'
+        actionAnim.value.play()
+        actionLabel.value = 'Email is up there ↑'
       }
     }
 
     return {
       askew,
-      peaceRef,
+      actionLabel,
+      actionRef,
 
-      handlePeaceClicked,
+      handleactionClicked,
     }
   },
 })
@@ -49,7 +52,7 @@ export default defineComponent({
   </ion-header>
 
   <ion-content fullscreen>
-    <div class="about-wrapper ion-padding max-width-md">
+    <div class="about-wrapper ion-padding max-width-sm">
       <div class="ion-text-center">
         <h1>Hi, I'm Alex:</h1>
       </div>
@@ -62,17 +65,19 @@ export default defineComponent({
           build and maintain web and mobile apps. Academic background in
           game-playing artificial intelligence and computer graphics.
         </p>
-        <p>This website is currently under development.</p>
+
         <p><a href="mailto:alexleong7@gmail.com">alexleong7@gmail.com</a></p>
       </div>
     </div>
-    <img
-      ref="peaceRef"
-      src="../assets/peace.svg"
-      @click="handlePeaceClicked"
-      alt="peace"
-      class="peace nodrag noselect"
-    />
+    <span :title="actionLabel">
+      <img
+        ref="actionRef"
+        src="../assets/buy-now.svg"
+        @click="handleactionClicked"
+        alt="action"
+        class="action nodrag noselect"
+      />
+    </span>
   </ion-content>
 </template>
 
@@ -81,8 +86,8 @@ export default defineComponent({
   margin: auto;
 }
 
-.peace {
-  cursor: url('../assets/happy-face.cur'), pointer;
+.action {
+  cursor: pointer;
   height: 100px;
   width: 100px;
   position: relative;
