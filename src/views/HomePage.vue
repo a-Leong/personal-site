@@ -48,13 +48,13 @@ export default defineComponent({
 
 <template>
   <ion-header class="ion-no-border">
-    <banner :shouldFall="!askew" />
+    <banner id="banner" :shouldFall="!askew" />
   </ion-header>
 
   <ion-content fullscreen>
     <div class="about-wrapper ion-padding max-width-sm">
       <div class="ion-text-center">
-        <h1>Hi, I'm Alex:</h1>
+        <h1>Hi, I'm Alex</h1>
       </div>
       <div>
         <p>
@@ -65,8 +65,16 @@ export default defineComponent({
           build and maintain web and mobile apps. Academic background in
           game-playing artificial intelligence and computer graphics.
         </p>
-
-        <p><a href="mailto:alexleong7@gmail.com">alexleong7@gmail.com</a></p>
+        <p>
+          See more on my
+          <a
+            href="https://drive.google.com/file/d/16bkXpchOJi31h_W_tmh95OBpzUOMxgWX/view?usp=sharing"
+            >resume</a
+          >.
+        </p>
+        <p>
+          <a href="mailto:alexleong7@gmail.com">alexleong7@gmail.com</a>
+        </p>
       </div>
     </div>
     <span :title="actionLabel">
@@ -82,6 +90,9 @@ export default defineComponent({
 </template>
 
 <style scoped>
+#banner {
+  top: -11.4vw;
+}
 .about-wrapper {
   margin: auto;
 }

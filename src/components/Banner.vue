@@ -14,7 +14,7 @@ export default defineComponent({
     const delays = ref()
     const tl = anime.timeline({
       easing: 'cubicBezier(0.86, 0.1, 0.77, 0.78)',
-      duration: 9500,
+      duration: 5500,
     })
 
     onMounted(() => {
@@ -32,14 +32,14 @@ export default defineComponent({
         rotate: function() {
           const rand = Math.random()
           if (rand > 0.75) {
-            return `${(Math.random() - 0.5) * 720}deg`
+            return `${(Math.random() - 0.5) * 180}deg`
           } else {
             return '0'
           }
         },
         duration: 2000,
         delay: function(_: HTMLElement, i: number) {
-          return 500 + delays.value[i] * 8000
+          return 500 + delays.value[i] * 4000
         },
       })
 
@@ -288,7 +288,6 @@ export default defineComponent({
 
 .banner {
   position: absolute;
-  top: -11.4vw;
   z-index: 10;
   width: 100%;
   text-align: center;
