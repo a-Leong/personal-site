@@ -40,7 +40,7 @@ h1 {
 }
 
 span {
-  font-family: 'Fira Code', monospace;
+  font-family: 'Montserrat', monospace;
 }
 
 p {
