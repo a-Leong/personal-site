@@ -21,7 +21,7 @@ export default defineComponent({
   setup(props) {
     const delays = ref()
     const tl = anime.timeline({
-      easing: 'cubicBezier(0.86, 0.1, 0.77, 0.78)',
+      easing: 'easeOutElastic(1, 0.7)',
       duration: 3500,
     })
 
@@ -33,9 +33,17 @@ export default defineComponent({
           return 1 - Math.sqrt(1 - Math.pow(x, 2))
         })
         .sort(() => Math.random() - 0.5)
+      anime({
+        targets: '.bio-wrapper',
+        translateX: ['-50%', '-50%'],
+        translateY: ['-110%', '-50%'],
+        easing: 'easeInOutElastic',
+        duration: 3000,
+        delay: 400,
+      })
       tl.add({
         targets: `.${props.brickClassName}`,
-        translateY: '50vh',
+        translateY: '0',
         rotate: function() {
           const rand = Math.random()
           if (rand > 0.6) {
@@ -46,14 +54,13 @@ export default defineComponent({
         },
         duration: 2000,
         delay: function(_: HTMLElement, i: number) {
-          return 500 + delays.value[i] * 2000
+          return 400 + delays.value[i] * 2000
         },
       })
-
       tl.add({
         targets: `.${props.brickClassName}`,
         rotate: '0',
-        duration: 1000,
+        duration: 2500,
         delay: function(_: HTMLElement, i: number) {
           return delays.value[i] * 500
         },
@@ -62,7 +69,7 @@ export default defineComponent({
 
     watch(
       () => props.shouldFall,
-      () => drop(),
+      () => props.shouldFall && drop(),
     )
   },
 })
@@ -74,9 +81,11 @@ export default defineComponent({
 
 <style scoped>
 .bio-wrapper {
+  line-height: 1.5;
+  min-width: 288px;
   position: absolute;
-  top: -76px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-110%);
 }
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
-import { createAnimation } from '@ionic/core'
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { alertController, createAnimation } from '@ionic/core'
 
 import DropInBio from '@/components/DropInBio.vue'
 
@@ -12,98 +12,110 @@ export default defineComponent({
     DropInBio,
   },
   setup() {
-    const askew = ref(true)
+    const actionClickCount = ref(0)
     const actionRef = ref()
     const actionAnim = ref()
-    const actionLabel = ref("Don't be afraid")
     const bioText =
-      "I'm a software engineer and I have been for three years. I work at Oregon Research Institute and Influents Innovations where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics."
+      "Hi there! I'm a software engineer and I have been for three years. I work at Oregon Research Institute and Influents Innovations where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics."
     bioText.replace(' ', '&#160;')
     const brickClassName = 'brick'
     const bioHtml = generateBricksHtml(bioText, brickClassName)
-    const bioPlaceholderHtml = generateBricksHtml(bioText, '')
+
+    const learnMoreAction = computed(() => require('@/assets/learn-more.svg'))
+    const buyNowAction = computed(() => require('@/assets/buy-now.svg'))
+
+    const actionSrc = computed(() =>
+      actionClickCount.value === 0 ? learnMoreAction.value : buyNowAction.value,
+    )
 
     onMounted(() => {
       actionAnim.value = createAnimation()
         .addElement(actionRef.value)
         .duration(400)
         .keyframes([
-          { offset: 0, transform: 'translateX(-50%) rotate(12deg)' },
-          { offset: 0.3, transform: 'translateX(-50%) rotate(-5deg)' },
-          { offset: 1, transform: 'translateX(-50%) rotate(0)' },
+          { offset: 0, transform: 'translateX(-50%) rotate(5deg)' },
+          { offset: 0.3, transform: 'translateX(-50%) rotate(2deg)' },
+          { offset: 1, transform: 'translateX(-50%) rotate(5deg)' },
         ])
     })
 
-    function handleactionClicked() {
-      if (actionAnim.value !== undefined && askew.value) {
-        askew.value = false
-        actionRef.value.style.cursor = 'default'
-        actionAnim.value.play()
-        actionLabel.value = 'Email is up there ↑'
+    async function handleActionClicked() {
+      actionAnim.value && actionAnim.value.play()
+      actionClickCount.value += 1
+      if (actionClickCount.value > 1) {
+        const stockAlert = await alertController.create({
+          header: 'Out of stock',
+          mode: 'ios',
+          message: 'Would you like to send an email to indicate your interest?',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+            },
+            {
+              text: 'Email',
+              handler: () => {
+                window.location.href = `mailto:alexleong7@gmail.com?subject=Inquiry about Alex Leong`
+              },
+            },
+          ],
+        })
+        stockAlert.present()
       }
     }
 
     return {
-      askew,
-      actionLabel,
+      actionClickCount,
       actionRef,
+      actionSrc,
       bioHtml,
-      bioPlaceholderHtml,
       brickClassName,
 
-      handleactionClicked,
+      handleActionClicked,
     }
   },
 })
 </script>
 
 <template>
-  <ion-content>
-    <div class="about-wrapper ion-padding max-width-sm">
-      <div class="ion-text-center">
-        <h1>Hi, I'm Alex</h1>
-      </div>
+  <ion-header class="ion-no-border">
+    <div class="ion-padding ion-text-center">
+      <h1 class="title">Alex Leong</h1>
     </div>
-
-    <span :title="actionLabel">
-      <img
-        ref="actionRef"
-        src="../assets/buy-now.svg"
-        @click="handleactionClicked"
-        alt="action"
-        class="action nodrag noselect"
-      />
-    </span>
-    <div class="bio-placeholder max-width-sm" v-html="bioPlaceholderHtml"></div>
+  </ion-header>
+  <ion-content fullscreen>
     <drop-in-bio
       :bioHtml="bioHtml"
       :brickClassName="brickClassName"
-      :shouldFall="!askew"
+      :shouldFall="actionClickCount === 1"
     />
   </ion-content>
+  <ion-footer class="ion-no-border ion-padding safe-area-bottom">
+    <img
+      ref="actionRef"
+      :src="actionSrc"
+      @click="handleActionClicked"
+      alt="action"
+      class="action nodrag noselect"
+    />
+  </ion-footer>
 </template>
 
 <style scoped>
-.bio-placeholder {
-  padding-bottom: 16px;
-  visibility: hidden;
-  top: calc(50vh - 76px);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.about-wrapper {
-  margin: auto;
+.title {
+  font-size: calc(min(10vh, 10vw));
 }
 
 .action {
-  z-index: 10;
   cursor: pointer;
-  height: 100px;
-  width: 100px;
+  border-radius: 40%;
+  width: 250px;
   position: relative;
   left: 50%;
-  transform: translateX(-50%) rotate(12deg);
+  transform: translateX(-50%) rotate(5deg);
+}
+
+.action:hover:active {
+  filter: invert(1);
 }
 </style>

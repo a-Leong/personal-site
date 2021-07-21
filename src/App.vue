@@ -33,18 +33,17 @@ export default defineComponent({
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@600;700&family=Montserrat&display=swap');
-
-h1 {
-  font-family: 'Fira Code', monospace;
-}
-
 span {
-  font-family: 'Montserrat', monospace;
+  display: inline-block;
 }
 
-p {
-  font-family: 'Montserrat', sans-serif;
+.safe-area-bottom {
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-top {
+  margin-top: constant(safe-area-inset-top);
+  margin-top: env(safe-area-inset-top);
 }
 
 .max-width-sm {
