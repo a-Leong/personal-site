@@ -34,6 +34,7 @@ export default defineComponent({
 
 <style>
 span {
+  font-size: calc(min(3vh, 3vw));
   display: inline-block;
 }
 

@@ -33,16 +33,17 @@ export default defineComponent({
         .addElement(actionRef.value)
         .duration(400)
         .keyframes([
-          { offset: 0, transform: 'translateX(-50%) rotate(5deg)' },
-          { offset: 0.3, transform: 'translateX(-50%) rotate(2deg)' },
+          { offset: 0, transform: 'translateX(-50%) rotate(0deg)' },
+          { offset: 0.3, transform: 'translateX(-50%) rotate(-2deg)' },
           { offset: 1, transform: 'translateX(-50%) rotate(5deg)' },
         ])
     })
 
     async function handleActionClicked() {
-      actionAnim.value && actionAnim.value.play()
       actionClickCount.value += 1
-      if (actionClickCount.value > 1) {
+      if (actionClickCount.value === 1) {
+        actionAnim.value && actionAnim.value.play()
+      } else if (actionClickCount.value > 1) {
         const stockAlert = await alertController.create({
           header: 'Out of stock',
           mode: 'ios',
@@ -89,8 +90,6 @@ export default defineComponent({
       :brickClassName="brickClassName"
       :shouldFall="actionClickCount === 1"
     />
-  </ion-content>
-  <ion-footer class="ion-no-border ion-padding safe-area-bottom">
     <img
       ref="actionRef"
       :src="actionSrc"
@@ -98,7 +97,7 @@ export default defineComponent({
       alt="action"
       class="action nodrag noselect"
     />
-  </ion-footer>
+  </ion-content>
 </template>
 
 <style scoped>
@@ -109,10 +108,10 @@ export default defineComponent({
 .action {
   cursor: pointer;
   border-radius: 40%;
-  width: 250px;
+  width: calc(min(30vh, 30vw));
   position: relative;
   left: 50%;
-  transform: translateX(-50%) rotate(5deg);
+  transform: translateX(-50%);
 }
 
 .action:hover:active {
