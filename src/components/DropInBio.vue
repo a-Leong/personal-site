@@ -9,10 +9,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    brickClassName: {
-      type: String,
-      required: true,
-    },
     shouldFall: {
       type: Boolean,
       default: false,
@@ -26,7 +22,7 @@ export default defineComponent({
     })
 
     function drop() {
-      const spans = document.querySelectorAll(`.${props.brickClassName}`)
+      const spans = document.querySelectorAll(`.brick`)
       delays.value = Array.from(spans.keys())
         .map((_, i, arr) => {
           const x = i / arr.length
@@ -42,7 +38,7 @@ export default defineComponent({
         delay: 400,
       })
       tl.add({
-        targets: `.${props.brickClassName}`,
+        targets: `.brick`,
         translateY: '0',
         rotate: function() {
           const rand = Math.random()
@@ -58,7 +54,7 @@ export default defineComponent({
         },
       })
       tl.add({
-        targets: `.${props.brickClassName}`,
+        targets: `.brick`,
         rotate: '0',
         duration: 2500,
         delay: function(_: HTMLElement, i: number) {

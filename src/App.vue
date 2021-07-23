@@ -33,7 +33,7 @@ export default defineComponent({
 </template>
 
 <style>
-span {
+.brick {
   font-size: calc(min(3vh, 3vw));
   display: inline-block;
 }

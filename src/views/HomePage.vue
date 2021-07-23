@@ -18,8 +18,7 @@ export default defineComponent({
     const bioText =
       "Hi there! I'm a software engineer and I have been for three years. I work at Oregon Research Institute and Influents Innovations where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics."
     bioText.replace(' ', '&#160;')
-    const brickClassName = 'brick'
-    const bioHtml = generateBricksHtml(bioText, brickClassName)
+    const bioHtml = generateBricksHtml(bioText, 'brick')
 
     const learnMoreAction = computed(() => require('@/assets/learn-more.svg'))
     const buyNowAction = computed(() => require('@/assets/buy-now.svg'))
@@ -70,7 +69,6 @@ export default defineComponent({
       actionRef,
       actionSrc,
       bioHtml,
-      brickClassName,
 
       handleActionClicked,
     }
@@ -85,11 +83,7 @@ export default defineComponent({
     </div>
   </ion-header>
   <ion-content fullscreen>
-    <drop-in-bio
-      :bioHtml="bioHtml"
-      :brickClassName="brickClassName"
-      :shouldFall="actionClickCount === 1"
-    />
+    <drop-in-bio :bioHtml="bioHtml" :shouldFall="actionClickCount === 1" />
     <img
       ref="actionRef"
       :src="actionSrc"
