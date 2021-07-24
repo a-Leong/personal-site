@@ -2,14 +2,14 @@
 import { computed, defineComponent, ref } from 'vue'
 import { alertController } from '@ionic/core'
 
-import DropInBio from '@/components/DropInBio.vue'
+import DropInBlock from '@/components/DropInBlock.vue'
 
 import { generateBricksHtml } from '@/utils/generate-bricks'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    DropInBio,
+    DropInBlock,
   },
   setup() {
     const texts = [
@@ -100,12 +100,12 @@ export default defineComponent({
     <div
       v-for="(block, i) in brickBlocks"
       :key="block"
-      class="bio-container ion-padding"
+      class="block-container ion-padding"
     >
-      <drop-in-bio
+      <drop-in-block
         :clickCount="learnMoreClickCount"
         :group="i"
-        :bioHtml="block"
+        :blockHtml="block"
       />
     </div>
   </ion-content>
@@ -123,7 +123,7 @@ export default defineComponent({
   font-size: calc(max(min(10vh, 10vw), 24px));
 }
 
-.bio-container {
+.block-container {
   display: flex;
   flex-direction: row;
   justify-content: center;

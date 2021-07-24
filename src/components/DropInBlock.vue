@@ -3,13 +3,13 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import anime from 'animejs'
 
 export default defineComponent({
-  name: 'DropInBio',
+  name: 'DropInBlock',
   props: {
     group: {
       type: Number,
       required: true,
     },
-    bioHtml: {
+    blockHtml: {
       type: String,
       required: true,
     },
@@ -93,6 +93,6 @@ export default defineComponent({
   <div
     :class="`block-wrapper-${group} max-width-md`"
     :style="blockWrapperStyle"
-    v-html="bioHtml"
+    v-html="blockHtml"
   ></div>
 </template>
