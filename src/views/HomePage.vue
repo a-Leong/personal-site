@@ -14,7 +14,7 @@ export default defineComponent({
   setup() {
     const texts = [
       "Hi there! I'm a software engineer and I have been for three years. I work at @Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics.",
-      'Check out my @resume++https://drive.google.com/file/d/16bkXpchOJi31h_W_tmh95OBpzUOMxgWX/view?usp=sharing++.',
+      'You can check out my @resume++https://drive.google.com/file/d/16bkXpchOJi31h_W_tmh95OBpzUOMxgWX/view?usp=sharing++ for more.',
     ]
 
     const learnMoreClickCount = ref(0)
@@ -23,8 +23,11 @@ export default defineComponent({
       generateBricksHtml(textBlock, i),
     )
 
-    const learnMoreAction = computed(() => require('@/assets/learn-more.svg'))
-    const buyNowAction = computed(() => require('@/assets/buy-now.svg'))
+    const learnMoreSvg = computed(() => require('@/assets/learn-more.svg'))
+    const learnMoreDisabledSvg = computed(() =>
+      require('@/assets/learn-more-disabled.svg'),
+    )
+    const buyNowSvg = computed(() => require('@/assets/buy-now.svg'))
 
     async function handleLearnMore() {
       learnMoreClickCount.value += 1
@@ -53,8 +56,9 @@ export default defineComponent({
 
     return {
       brickBlocks,
-      buyNowAction,
-      learnMoreAction,
+      buyNowSvg,
+      learnMoreSvg,
+      learnMoreDisabledSvg,
       learnMoreClickCount,
 
       handleLearnMore,
@@ -71,7 +75,11 @@ export default defineComponent({
     </div>
     <div class="actions-wrapper ion-padding">
       <img
-        :src="learnMoreAction"
+        :src="
+          learnMoreClickCount < brickBlocks.length
+            ? learnMoreSvg
+            : learnMoreDisabledSvg
+        "
         @click="handleLearnMore"
         alt="Learn More"
         :class="
@@ -81,7 +89,7 @@ export default defineComponent({
         "
       />
       <img
-        :src="buyNowAction"
+        :src="buyNowSvg"
         @click="handleBuyNow"
         alt="Buy Now"
         class="action nodrag noselect"
@@ -141,8 +149,8 @@ export default defineComponent({
 }
 
 .action-disabled {
+  border-radius: 35%;
   height: calc(max(min(10vh, 10vw), 26px));
   transform: rotate(1deg);
-  filter: invert(1);
 }
 </style>
