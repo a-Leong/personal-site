@@ -34,7 +34,7 @@ export default defineComponent({
 
 <style>
 .brick {
-  font-size: calc(min(3vh, 3vw));
+  font-size: calc(max(min(4vh, 4vw), 20px));
   display: inline-block;
 }
 

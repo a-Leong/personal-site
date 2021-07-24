@@ -1,6 +1,6 @@
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
-import { alertController, createAnimation } from '@ionic/core'
+import { computed, defineComponent, ref } from 'vue'
+import { alertController } from '@ionic/core'
 
 import DropInBio from '@/components/DropInBio.vue'
 
@@ -12,65 +12,53 @@ export default defineComponent({
     DropInBio,
   },
   setup() {
-    const actionClickCount = ref(0)
-    const actionRef = ref()
-    const actionAnim = ref()
-    const bioText =
-      "Hi there! I'm a software engineer and I have been for three years. I work at Oregon Research Institute and Influents Innovations where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics."
-    bioText.replace(' ', '&#160;')
-    const bioHtml = generateBricksHtml(bioText, 'brick')
+    const texts = [
+      "Hi there! I'm a software engineer and I have been for three years. I work at @Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics.",
+      'Check out my @resume++https://drive.google.com/file/d/16bkXpchOJi31h_W_tmh95OBpzUOMxgWX/view?usp=sharing++.',
+    ]
+
+    const learnMoreClickCount = ref(0)
+
+    const brickBlocks = texts.map((textBlock, i) =>
+      generateBricksHtml(textBlock, i),
+    )
 
     const learnMoreAction = computed(() => require('@/assets/learn-more.svg'))
     const buyNowAction = computed(() => require('@/assets/buy-now.svg'))
 
-    const actionSrc = computed(() =>
-      actionClickCount.value === 0 ? learnMoreAction.value : buyNowAction.value,
-    )
+    async function handleLearnMore() {
+      learnMoreClickCount.value += 1
+    }
 
-    onMounted(() => {
-      actionAnim.value = createAnimation()
-        .addElement(actionRef.value)
-        .duration(400)
-        .keyframes([
-          { offset: 0, transform: 'translateX(-50%) rotate(0deg)' },
-          { offset: 0.3, transform: 'translateX(-50%) rotate(-2deg)' },
-          { offset: 1, transform: 'translateX(-50%) rotate(5deg)' },
-        ])
-    })
-
-    async function handleActionClicked() {
-      actionClickCount.value += 1
-      if (actionClickCount.value === 1) {
-        actionAnim.value && actionAnim.value.play()
-      } else if (actionClickCount.value > 1) {
-        const stockAlert = await alertController.create({
-          header: 'Out of stock',
-          mode: 'ios',
-          message: 'Would you like to send an email to indicate your interest?',
-          buttons: [
-            {
-              text: 'Cancel',
-              role: 'cancel',
+    async function handleBuyNow() {
+      const stockAlert = await alertController.create({
+        header: 'Out of stock',
+        mode: 'ios',
+        message: 'Would you like to send an email to indicate your interest?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+          },
+          {
+            text: 'Email',
+            handler: () => {
+              window.location.href = `mailto:alexleong7@gmail.com?subject=Inquiry regarding Alex Leong`
             },
-            {
-              text: 'Email',
-              handler: () => {
-                window.location.href = `mailto:alexleong7@gmail.com?subject=Inquiry about Alex Leong`
-              },
-            },
-          ],
-        })
-        stockAlert.present()
-      }
+          },
+        ],
+      })
+      stockAlert.present()
     }
 
     return {
-      actionClickCount,
-      actionRef,
-      actionSrc,
-      bioHtml,
+      brickBlocks,
+      buyNowAction,
+      learnMoreAction,
+      learnMoreClickCount,
 
-      handleActionClicked,
+      handleLearnMore,
+      handleBuyNow,
     }
   },
 })
@@ -78,37 +66,83 @@ export default defineComponent({
 
 <template>
   <ion-header class="ion-no-border">
-    <div class="ion-padding ion-text-center">
-      <h1 class="title">Alex Leong</h1>
+    <div class="ion-text-center">
+      <h1 class="title">Alexander Leong</h1>
+    </div>
+    <div class="actions-wrapper ion-padding">
+      <img
+        :src="learnMoreAction"
+        @click="handleLearnMore"
+        alt="Learn More"
+        :class="
+          learnMoreClickCount < brickBlocks.length
+            ? 'action nodrag noselect'
+            : 'action-disabled nodrag noselect'
+        "
+      />
+      <img
+        :src="buyNowAction"
+        @click="handleBuyNow"
+        alt="Buy Now"
+        class="action nodrag noselect"
+      />
     </div>
   </ion-header>
   <ion-content fullscreen>
-    <drop-in-bio :bioHtml="bioHtml" :shouldFall="actionClickCount === 1" />
-    <img
-      ref="actionRef"
-      :src="actionSrc"
-      @click="handleActionClicked"
-      alt="action"
-      class="action nodrag noselect"
-    />
+    <div
+      v-for="(block, i) in brickBlocks"
+      :key="block"
+      class="bio-container ion-padding"
+    >
+      <drop-in-bio
+        :clickCount="learnMoreClickCount"
+        :group="i"
+        :bioHtml="block"
+      />
+    </div>
   </ion-content>
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'changes';
+  src: url('../assets/changes.woff') format('woff');
+}
 .title {
-  font-size: calc(min(10vh, 10vw));
+  font-family: changes;
+  color: #0033eb;
+  font-weight: 500;
+  font-size: calc(max(min(10vh, 10vw), 24px));
+}
+
+.bio-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.actions-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: center;
 }
 
 .action {
+  z-index: 10;
   cursor: pointer;
-  border-radius: 40%;
-  width: calc(min(30vh, 30vw));
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  border-radius: 35%;
+  height: calc(max(min(10vh, 10vw), 26px));
+  transform: rotate(1deg);
 }
 
 .action:hover:active {
+  filter: invert(1);
+}
+
+.action-disabled {
+  height: calc(max(min(10vh, 10vw), 26px));
+  transform: rotate(1deg);
   filter: invert(1);
 }
 </style>

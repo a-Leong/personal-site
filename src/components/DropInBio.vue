@@ -1,23 +1,33 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import anime from 'animejs'
 
 export default defineComponent({
   name: 'DropInBio',
   props: {
+    group: {
+      type: Number,
+      required: true,
+    },
     bioHtml: {
       type: String,
       required: true,
     },
-    shouldFall: {
-      type: Boolean,
-      default: false,
+    clickCount: {
+      type: Number,
+      required: true,
     },
   },
   setup(props) {
+    const blockWrapperStyle = computed(() => ({
+      'line-height': '1.5',
+      display: props.clickCount <= props.group ? 'none' : 'inline-block',
+      transform: props.clickCount <= props.group ? 'translateY(-50%)' : '',
+    }))
+
     const delays = ref()
     const tl = anime.timeline({
-      easing: 'easeOutElastic(1, 0.7)',
+      easing: 'easeOutElastic(1, 0.9)',
       duration: 3500,
     })
 
@@ -29,16 +39,16 @@ export default defineComponent({
           return 1 - Math.sqrt(1 - Math.pow(x, 2))
         })
         .sort(() => Math.random() - 0.5)
+      const duration = 20 * delays.value.length
       anime({
-        targets: '.bio-wrapper',
-        translateX: ['-50%', '-50%'],
-        translateY: ['-110%', '-50%'],
+        targets: `.block-wrapper-${props.group}`,
+        translateY: ['-50%', 0],
         easing: 'easeInOutElastic',
-        duration: 3000,
+        duration: duration * 1.5,
         delay: 400,
       })
       tl.add({
-        targets: `.brick`,
+        targets: `.block-${props.group}`,
         translateY: '0',
         rotate: function() {
           const rand = Math.random()
@@ -48,15 +58,15 @@ export default defineComponent({
             return '0'
           }
         },
-        duration: 2000,
+        duration,
         delay: function(_: HTMLElement, i: number) {
-          return 400 + delays.value[i] * 2000
+          return 400 + delays.value[i] * duration
         },
       })
       tl.add({
-        targets: `.brick`,
+        targets: `.block-${props.group}`,
         rotate: '0',
-        duration: 2500,
+        duration: duration + 500,
         delay: function(_: HTMLElement, i: number) {
           return delays.value[i] * 500
         },
@@ -64,24 +74,25 @@ export default defineComponent({
     }
 
     watch(
-      () => props.shouldFall,
-      () => props.shouldFall && drop(),
+      () => props.clickCount,
+      () => {
+        if (props.clickCount === props.group + 1) {
+          drop()
+        }
+      },
     )
+
+    return {
+      blockWrapperStyle,
+    }
   },
 })
 </script>
 
 <template>
-  <div class="bio-wrapper max-width-sm" v-html="bioHtml"></div>
+  <div
+    :class="`block-wrapper-${group} max-width-md`"
+    :style="blockWrapperStyle"
+    v-html="bioHtml"
+  ></div>
 </template>
-
-<style scoped>
-.bio-wrapper {
-  line-height: 1.5;
-  min-width: 288px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-110%);
-}
-</style>
