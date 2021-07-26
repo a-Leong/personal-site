@@ -149,12 +149,12 @@ export default defineComponent({
 
 <style scoped>
 @font-face {
-  font-family: tnr-condensed;
-  src: url('../assets/tnr-condensed.otf');
+  font-family: 'tnr-condensed';
+  src: url('../assets/tnr-condensed.woff2');
 }
 
 .title {
-  font-family: tnr-condensed;
+  font-family: 'tnr-condensed';
   color: #0033eb;
   min-height: 0vw;
   font-size: calc(max(min(10vh, 10vw), 24px));

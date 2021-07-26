@@ -5,7 +5,7 @@ module.exports = {
   chainWebpack: config => {
     config.module
       .rule('url-loader')
-      .test(/\.(otf)(\?.*)?$/)
+      .test(/\.(woff2)(\?.*)?$/)
       .use('url-loader')
       .loader('url-loader')
       .end()
