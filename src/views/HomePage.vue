@@ -119,7 +119,7 @@ export default defineComponent({
     </div>
   </ion-content>
   <ion-footer>
-    <ion-toolbar class="footer-toolbar">
+    <ion-toolbar>
       <nav class="footer-link-container">
         <a
           class="footer-link"
@@ -158,10 +158,6 @@ export default defineComponent({
   color: #0033eb;
   min-height: 0vw;
   font-size: calc(max(min(10vh, 10vw), 24px));
-}
-
-.footer-toolbar {
-  background-color: #f6f8fa;
 }
 
 .footer-link-container {
