@@ -80,11 +80,9 @@ export default defineComponent({
       <span title="Learn more">
         <img
           alt="Learn more"
-          :tabindex="allTextsDropped ? null : 1"
           role="button"
           :src="allTextsDropped ? learnMoreDisabledSvg : learnMoreSvg"
           @click="handleLearnMore"
-          @keyup.enter="handleLearnMore"
           :class="
             allTextsDropped
               ? 'action-button nodrag noselect'
@@ -95,11 +93,9 @@ export default defineComponent({
       <span title="Buy now">
         <img
           alt="Buy now"
-          tabindex="2"
           role="button"
           :src="buyNowSvg"
           @click="handleBuyNow"
-          @keyup.enter="handleBuyNow"
           class="action-button clickable nodrag noselect"
         />
       </span>
