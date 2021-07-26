@@ -146,7 +146,7 @@ export default defineComponent({
 <style scoped>
 @font-face {
   font-family: 'tnr-condensed';
-  src: url('../assets/tnr-condensed.woff');
+  src: url('../assets/tnr-c.woff');
 }
 
 .title {
