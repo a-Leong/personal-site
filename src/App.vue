@@ -33,7 +33,12 @@ export default defineComponent({
 </template>
 
 <style>
+a {
+  color: #0033eb;
+}
+
 .brick {
+  min-height: 0vw;
   font-size: calc(max(min(4vh, 4vw), 20px));
   display: inline-block;
 }

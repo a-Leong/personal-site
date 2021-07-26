@@ -27,8 +27,7 @@ export default defineComponent({
 
     const delays = ref()
     const tl = anime.timeline({
-      easing: 'easeOutElastic(1, 0.9)',
-      duration: 3500,
+      easing: 'easeInOutQuad', // 'easeOutElastic(1, 0.9)',
     })
 
     function drop() {
@@ -39,13 +38,12 @@ export default defineComponent({
           return 1 - Math.sqrt(1 - Math.pow(x, 2))
         })
         .sort(() => Math.random() - 0.5)
-      const duration = 20 * delays.value.length
+      const duration = 12 * delays.value.length
       anime({
         targets: `.block-wrapper-${props.group}`,
         translateY: ['-50%', 0],
-        easing: 'easeInOutElastic',
+        easing: 'easeInOutCubic',
         duration: duration * 1.5,
-        delay: 400,
       })
       tl.add({
         targets: `.block-${props.group}`,
@@ -60,15 +58,16 @@ export default defineComponent({
         },
         duration,
         delay: function(_: HTMLElement, i: number) {
-          return 400 + delays.value[i] * duration
+          return delays.value[i] * duration
         },
       })
       tl.add({
         targets: `.block-${props.group}`,
         rotate: '0',
-        duration: duration + 500,
+        easing: 'easeInOutElastic',
+        duration: duration,
         delay: function(_: HTMLElement, i: number) {
-          return delays.value[i] * 500
+          return 250 + delays.value[i] * 500
         },
       })
     }
@@ -91,7 +90,7 @@ export default defineComponent({
 
 <template>
   <div
-    :class="`block-wrapper-${group} max-width-md`"
+    :class="`block-wrapper-${group}`"
     :style="blockWrapperStyle"
     v-html="blockHtml"
   ></div>
