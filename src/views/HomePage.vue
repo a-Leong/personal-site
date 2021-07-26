@@ -31,7 +31,7 @@ export default defineComponent({
     )
     const buyNowSvg = computed(() => require('@/assets/buy-now.svg'))
 
-    async function handleLearnMore() {
+    function handleLearnMore() {
       learnMoreClickCount.value += 1
     }
 
@@ -145,7 +145,7 @@ export default defineComponent({
 
 <style scoped>
 @font-face {
-  font-family: 'tnr-condensed';
+  font-family: 'tnr-condensed', 'Times New Roman', serif;
   src: url('../assets/tnr-c.woff');
 }
 
