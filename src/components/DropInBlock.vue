@@ -27,7 +27,7 @@ export default defineComponent({
 
     const delays = ref()
     const tl = anime.timeline({
-      easing: 'easeInOutQuad', // 'easeOutElastic(1, 0.9)',
+      easing: 'easeOutElastic(1, 1)',
     })
 
     function drop() {
@@ -38,11 +38,11 @@ export default defineComponent({
           return 1 - Math.sqrt(1 - Math.pow(x, 2))
         })
         .sort(() => Math.random() - 0.5)
-      const duration = 12 * delays.value.length
+      const duration = 15 * delays.value.length
       anime({
         targets: `.block-wrapper-${props.group}`,
         translateY: ['-50%', 0],
-        easing: 'easeInOutCubic',
+        easing: 'easeOutElastic(1, 1)',
         duration: duration * 1.5,
       })
       tl.add({

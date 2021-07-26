@@ -80,7 +80,7 @@ export default defineComponent({
       <span title="Learn more">
         <img
           alt="Learn more"
-          tabindex="1"
+          :tabindex="allTextsDropped ? null : 1"
           role="button"
           :src="allTextsDropped ? learnMoreDisabledSvg : learnMoreSvg"
           @click="handleLearnMore"
