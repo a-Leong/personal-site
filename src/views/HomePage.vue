@@ -104,13 +104,13 @@ export default defineComponent({
   <ion-content fullscreen>
     <div class="flex-row-center">
       <div class="flex-col-center  max-width-md">
-        <div v-for="(block, i) in brickBlocks" :key="block" class="ion-padding">
-          <drop-in-block
-            :clickCount="learnMoreClickCount"
-            :group="i"
-            :blockHtml="block"
-          />
-        </div>
+        <drop-in-block
+          v-for="(block, i) in brickBlocks"
+          :key="block"
+          :clickCount="learnMoreClickCount"
+          :group="i"
+          :blockHtml="block"
+        />
       </div>
     </div>
   </ion-content>

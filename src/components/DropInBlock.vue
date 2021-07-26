@@ -90,7 +90,7 @@ export default defineComponent({
 
 <template>
   <div
-    :class="`block-wrapper-${group}`"
+    :class="`block-wrapper-${group} ion-padding`"
     :style="blockWrapperStyle"
     v-html="blockHtml"
   ></div>
