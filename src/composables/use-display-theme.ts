@@ -31,8 +31,8 @@ function setDisplayMode(setting: DisplayMode) {
     }
   }
 }
-setDisplayMode(currentDisplayMode.value)
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function systemDisplaySettingChanged() {
   if (debug) console.log('systemDisplaySettingChanged triggered')
   if (currentDisplayMode.value === 'auto') {
@@ -40,8 +40,10 @@ function systemDisplaySettingChanged() {
   }
 }
 
-// Listen for changes to the prefers-color-scheme media query
-systemPrefersDark.addListener(() => systemDisplaySettingChanged())
+// TODO: Add styles for dynamic display theming
+// // Listen for changes to the prefers-color-scheme media query
+// systemPrefersDark.addListener(() => systemDisplaySettingChanged())
+// setDisplayMode(currentDisplayMode.value)
 
 export default function() {
   return {
