@@ -1,29 +1,3 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-import useDisplayTheme from './composables/use-display-theme'
-
-export default defineComponent({
-  setup() {
-    const { displayTheme, setDisplayMode } = useDisplayTheme()
-
-    function toggleDisplayTheme() {
-      if (displayTheme.value === 'light') {
-        setDisplayMode('dark')
-      } else {
-        setDisplayMode('light')
-      }
-    }
-
-    return {
-      displayTheme,
-
-      toggleDisplayTheme,
-    }
-  },
-})
-</script>
-
 <template>
   <ion-app>
     <ion-page>

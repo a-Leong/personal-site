@@ -17,6 +17,13 @@ module.exports = {
     'no-unused-vars': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
 
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly',
+    withDefaults: 'readonly',
+  },
+
   extends: [
     '@vue/typescript/recommended',
     'plugin:vue/vue3-essential',

@@ -1,80 +1,37 @@
-<script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
-import { alertController } from '@ionic/core'
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
 import DropInBlock from '@/components/DropInBlock.vue'
 
 import { generateBricksHtml } from '@/utils/generate-bricks'
 
-export default defineComponent({
-  name: 'Home',
-  components: {
-    DropInBlock,
-  },
-  setup() {
-    const texts = [
-      "Hi there! I'm a software engineer and I have been for three years. I work for the NPO @link@Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @link@Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics.",
-    ]
+const texts = [
+  "Hi there! I'm a software engineer and I have been for three years. I work for the NPO @link@Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @link@Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics.",
+]
 
-    const learnMoreClickCount = ref(0)
-    const allTextsDropped = computed(
-      () => learnMoreClickCount.value >= texts.length,
-    )
+const learnMoreClickCount = ref(0)
+const allTextsDropped = computed(
+  () => learnMoreClickCount.value >= texts.length,
+)
 
-    const brickBlocks = texts.map((textBlock, i) =>
-      generateBricksHtml(textBlock, i),
-    )
+const brickBlocks = texts.map((textBlock, i) =>
+  generateBricksHtml(textBlock, i),
+)
 
-    const learnMoreSvg = computed(() => require('@/assets/learn-more.svg'))
-    const learnMoreDisabledSvg = computed(() =>
-      require('@/assets/learn-more-disabled.svg'),
-    )
-    const buyNowSvg = computed(() => require('@/assets/buy-now.svg'))
+const learnMoreSvg = computed(() => require('@/assets/learn-more.svg'))
+const learnMoreDisabledSvg = computed(() =>
+  require('@/assets/learn-more-disabled.svg'),
+)
 
-    function handleLearnMore() {
-      learnMoreClickCount.value += 1
-    }
-
-    async function handleBuyNow() {
-      const stockAlert = await alertController.create({
-        header: "I'm glad you're interested",
-        mode: 'ios',
-        message: 'Would you like to start a conversation?',
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-          },
-          {
-            text: 'Email',
-            handler: () => {
-              window.location.href = `mailto:alexleong7@gmail.com`
-            },
-          },
-        ],
-      })
-      stockAlert.present()
-    }
-
-    return {
-      allTextsDropped,
-      brickBlocks,
-      buyNowSvg,
-      learnMoreSvg,
-      learnMoreDisabledSvg,
-      learnMoreClickCount,
-
-      handleBuyNow,
-      handleLearnMore,
-    }
-  },
-})
+function handleLearnMore() {
+  learnMoreClickCount.value += 1
+}
 </script>
 
 <template>
   <ion-header class="ion-no-border">
     <div class="ion-text-center">
-      <h1 class="title">Alexander Leong</h1>
+      <h1 class="title"><span class="glyph-a">A</span>lex Leong</h1>
     </div>
     <div class="flex-row-center ion-padding">
       <span title="Learn more">
@@ -90,20 +47,11 @@ export default defineComponent({
           "
         />
       </span>
-      <span title="Buy now">
-        <img
-          alt="Buy now"
-          role="button"
-          :src="buyNowSvg"
-          @click="handleBuyNow"
-          class="action-button clickable nodrag noselect"
-        />
-      </span>
     </div>
   </ion-header>
   <ion-content fullscreen>
     <div class="flex-row-center">
-      <div class="flex-col-center  max-width-md">
+      <div class="flex-col-center max-width-md">
         <drop-in-block
           v-for="(block, i) in brickBlocks"
           :key="block"
@@ -114,12 +62,12 @@ export default defineComponent({
       </div>
     </div>
   </ion-content>
-  <ion-footer>
+  <ion-footer mode="ios">
     <ion-toolbar>
       <nav class="footer-link-container">
         <a
           class="footer-link"
-          href="https://drive.google.com/file/d/16bkXpchOJi31h_W_tmh95OBpzUOMxgWX/view?usp=sharing"
+          href="https://drive.google.com/file/d/1xYywYeWP9G_g1ps1HGQysF0HtaTAEb8e/view?usp=sharing"
           target="_blank"
         >
           Resume
@@ -144,16 +92,17 @@ export default defineComponent({
 </template>
 
 <style scoped>
-@font-face {
-  font-family: 'tnr-condensed', 'Times New Roman', serif;
-  src: url('../assets/tnr-c.woff');
-}
-
 .title {
-  font-family: 'tnr-condensed';
-  color: #0033eb;
+  color: black;
+  font-family: itc-avant-garde-gothic-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
   min-height: 0vw;
   font-size: calc(max(min(10vh, 10vw), 24px));
+}
+
+.glyph-a {
+  font-feature-settings: 'salt' 1;
 }
 
 .footer-link-container {

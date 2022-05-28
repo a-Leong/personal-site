@@ -1,11 +1,3 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'NotFoundPage',
-})
-</script>
-
 <template>
   <ion-content>
     <div class="not-found-message ion-text-center ion-padding">
