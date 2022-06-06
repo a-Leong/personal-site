@@ -50,17 +50,27 @@ function handleLearnMore() {
     </div>
   </ion-header>
   <ion-content fullscreen>
-    <div class="flex-row-center">
-      <div class="flex-col-center max-width-md">
-        <drop-in-block
-          v-for="(block, i) in brickBlocks"
-          :key="block"
-          :clickCount="learnMoreClickCount"
-          :group="i"
-          :blockHtml="block"
-        />
-      </div>
-    </div>
+    <ion-grid class="max-width-md" aria-hidden>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+          <drop-in-block
+            v-for="(block, i) in brickBlocks"
+            :key="block"
+            :clickCount="learnMoreClickCount"
+            :group="i"
+            :blockHtml="block"
+          />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p
+      v-for="(text, i) in texts"
+      :key="i"
+      :class="['sr-only', { 'ion-hide': i <= learnMoreClickCount }]"
+    >
+      {{ text }}
+    </p>
   </ion-content>
   <ion-footer mode="ios">
     <ion-toolbar>
@@ -142,5 +152,14 @@ function handleLearnMore() {
 
 .action-button.clickable:hover:active {
   filter: invert(1);
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 </style>
