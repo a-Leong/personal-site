@@ -40,6 +40,8 @@ function handleLearnMore() {
           role="button"
           :src="allTextsDropped ? learnMoreDisabledSvg : learnMoreSvg"
           @click="handleLearnMore"
+          @keyup.enter="handleLearnMore"
+          tabindex="0"
           :class="
             allTextsDropped
               ? 'action-button nodrag noselect'
@@ -79,6 +81,7 @@ function handleLearnMore() {
           class="footer-link"
           href="https://drive.google.com/file/d/1xYywYeWP9G_g1ps1HGQysF0HtaTAEb8e/view?usp=sharing"
           target="_blank"
+          tabindex="0"
         >
           Resume
         </a>
@@ -86,6 +89,7 @@ function handleLearnMore() {
           class="footer-link"
           href="https://www.linkedin.com/in/alex-leong/"
           target="_blank"
+          tabindex="0"
         >
           LinkedIn
         </a>
@@ -93,6 +97,7 @@ function handleLearnMore() {
           class="footer-link"
           href="https://github.com/a-Leong"
           target="_blank"
+          tabindex="0"
         >
           Github
         </a>
