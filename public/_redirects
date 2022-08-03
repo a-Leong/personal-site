@@ -1,2 +1,6 @@
+# Domain-level redirects
+https://www.alexleong.xyz/* https://alexleong.dev/:splat 301!
 https://alexleong.xyz/* https://alexleong.dev/:splat 301!
+
+# SPA redirect config
 /* /index.html 200
