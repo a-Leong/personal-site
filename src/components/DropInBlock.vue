@@ -98,7 +98,6 @@ watch(
     :class="{ showing: isBlockShowing }"
     :value="progress"
     step="0.01"
-    mode="ios"
     @ionChange="seekAnim"
     @ionKnobMoveStart="tl.pause"
     @ionKnobMoveEnd="tl.play"

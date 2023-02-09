@@ -75,7 +75,7 @@ function handleLearnMore() {
       {{ text }}
     </p>
   </ion-content>
-  <ion-footer mode="ios" class="ion-no-border">
+  <ion-footer class="ion-no-border">
     <ion-toolbar>
       <nav class="footer-link-container">
         <a

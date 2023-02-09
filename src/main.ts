@@ -176,5 +176,5 @@ app.component('ion-toggle', IonToggle)
 app.component('ion-toolbar', IonToolbar)
 app
   .use(Router)
-  .use(IonicVue)
+  .use(IonicVue, { mode: 'ios' })
   .mount('#app')
