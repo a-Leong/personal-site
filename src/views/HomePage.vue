@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 
 import DropInBlock from '@/components/DropInBlock.vue'
 
-import { generateBricksHtml } from '@/utils/generate-bricks'
+import { generateBricksHtml, parseForSR } from '@/utils/bio-parser'
 
 const texts = [
   "Hi there! I'm a software lead at the NPO @link@Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @link@Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps.",
@@ -37,8 +37,9 @@ function handleLearnMore() {
     <div class="flex-row-center ion-padding">
       <span title="Learn more">
         <img
-          alt="Learn more"
+          :aria-disabled="allTextsDropped"
           role="button"
+          alt="Learn more"
           :src="allTextsDropped ? learnMoreDisabledSvg : learnMoreSvg"
           @click="handleLearnMore"
           @keyup.enter="handleLearnMore"
@@ -67,12 +68,8 @@ function handleLearnMore() {
       </ion-row>
     </ion-grid>
 
-    <p
-      v-for="(text, i) in texts"
-      :key="i"
-      :class="['sr-only', { 'ion-hide': i <= learnMoreClickCount }]"
-    >
-      {{ text }}
+    <p v-for="(text, i) in texts" :key="i" class="sr-only">
+      {{ parseForSR(text) }}
     </p>
   </ion-content>
   <ion-footer class="ion-no-border">
@@ -145,7 +142,6 @@ function handleLearnMore() {
 }
 
 .action-button {
-  border-radius: 35%;
   min-height: 26px;
   height: calc(min(10vh, 10vw));
   transform: rotate(1deg);

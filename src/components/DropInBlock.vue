@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, onMounted } from 'vue'
 import { IonRange, RangeCustomEvent } from '@ionic/vue'
+import { debounce } from '@/utils/toolkit'
 import anime from 'animejs'
 
 const props = defineProps<{
@@ -78,6 +79,8 @@ function seekAnim(event: RangeCustomEvent) {
   tl.seek(tl.duration * ((event.detail.value as number) / 100))
 }
 
+const debouncedPlay = debounce(tl.play, 100)
+
 watch(
   () => props.clickCount,
   () => {
@@ -90,17 +93,20 @@ watch(
 
 <template>
   <div
+    aria-hidden="true"
     :class="`block-wrapper-${group} ion-padding-horizontal`"
     :style="blockWrapperStyle"
     v-html="blockHtml"
   ></div>
   <ion-range
+    :disabled="!isBlockShowing"
+    :tabindex="isBlockShowing ? undefined : -1"
     :class="{ showing: isBlockShowing }"
     :value="progress"
-    step="0.01"
+    step="0.1"
     @ionChange="seekAnim"
     @ionKnobMoveStart="tl.pause"
-    @ionKnobMoveEnd="tl.play"
+    @ionKnobMoveEnd="debouncedPlay"
   />
 </template>
 
@@ -112,6 +118,9 @@ ion-range {
   --bar-background-active: #0033eb;
   --bar-background: transparent;
   --bar-height: 1px;
+}
+ion-range:focus::part(knob) {
+  border: solid 1px #0033eb0a;
 }
 ion-range.showing {
   opacity: 1;

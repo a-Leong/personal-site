@@ -21,3 +21,11 @@ export function generateBricksHtml(string: string, group: number) {
     `<span class="brick block-${group}" ${spanStyle}>&#160;</span>`,
   )
 }
+
+export function parseForSR(string: string) {
+  let parsedString
+  parsedString = string.replaceAll('&#160;', ' ')
+  parsedString = parsedString.replaceAll('@link@', ' ')
+  parsedString = parsedString.replaceAll('++', ' ')
+  return parsedString
+}
