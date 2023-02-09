@@ -6,7 +6,8 @@ import DropInBlock from '@/components/DropInBlock.vue'
 import { generateBricksHtml } from '@/utils/generate-bricks'
 
 const texts = [
-  "Hi there! I'm a software engineer and I have been for three years. I work for the NPO @link@Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @link@Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps. I have an academic background in game-playing artificial intelligence and computer graphics.",
+  "Hi there! I'm a software lead at the NPO @link@Oregon&#160;Research&#160;Institute++http://www.ori.org/research++ and @link@Influents&#160;Innovations++https://influentsin.com++ where I build and maintain web and mobile apps.",
+  'I have an academic background in game-playing artificial intelligence and computer graphics.',
 ]
 
 const learnMoreClickCount = ref(0)
@@ -74,7 +75,7 @@ function handleLearnMore() {
       {{ text }}
     </p>
   </ion-content>
-  <ion-footer mode="ios">
+  <ion-footer mode="ios" class="ion-no-border">
     <ion-toolbar>
       <nav class="footer-link-container">
         <a
