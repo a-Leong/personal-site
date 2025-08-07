@@ -71,11 +71,14 @@ onMounted(() => {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(container.clientWidth, container.clientHeight)
+  renderer.shadowMap.enabled = true // ✅ enable shadow map
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap
   container.appendChild(renderer.domElement)
 
   scene.add(new THREE.AmbientLight(0xffffff, 2))
   const directional = new THREE.DirectionalLight(0xfff0e0, 1)
   directional.position.set(10, 20, 10)
+  directional.castShadow = true
   scene.add(directional)
 
   const loader = new GLTFLoader()
@@ -88,6 +91,13 @@ onMounted(() => {
       dogModel.scale.set(5, 5, 5)
       dogModel.position.set(0, -2, 0)
       gltf.scene.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material.side = THREE.FrontSide // avoid double rendering
+          child.material.toneMapped = true
+          child.material.needsUpdate = true
+          child.castShadow = true
+          child.receiveShadow = true
+        }
         if (child.name === 'N') headBone = child as THREE.Bone
       })
       scene.add(dogModel)
