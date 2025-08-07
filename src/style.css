@@ -1,5 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  @font-face {
+    font-family: 'SF Pro';
+    src: url('./SF-Pro-Display-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  font-family: 'SF Pro', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
