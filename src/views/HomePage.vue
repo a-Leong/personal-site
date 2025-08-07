@@ -9,7 +9,7 @@
 
     <p>
       Employed by
-      <a href="https://www.ori.org/research">Oregon Research Institute</a> and
+      <a href="https://www.ori.org/about">Oregon Research Institute</a> and
       <a href="https://influentsin.com">Influents Innovations</a>
     </p>
 
