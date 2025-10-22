@@ -1,6 +1,4 @@
-# Personal Site
-
-This is a minimal, accessible, and unstyled personal website built with Vue 3. It features a simple homepage and a custom background component.
+This is my personal website, built with Vue 3. It features a simple homepage and some three.js for fun.
 
 ## Tech Stack
 
