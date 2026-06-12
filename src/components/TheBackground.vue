@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { onMounted, onBeforeUnmount } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 
 let animationId: number
@@ -9,6 +9,7 @@ let mixer: THREE.AnimationMixer
 let dogModel: THREE.Group
 let dogAction: THREE.AnimationAction
 const clock = new THREE.Clock()
+const loaded = ref(false)
 
 function throttle<T extends (...args: any[]) => void>(fn: T, limit: number) {
   let inThrottle = false
@@ -119,6 +120,8 @@ onMounted(() => {
         dogAction.weight = 0.1
         dogAction.play()
       }
+
+      loaded.value = true
     },
     undefined,
     (error) => console.error('Error loading model:', error),
@@ -194,7 +197,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="background-animation"></div>
+  <div id="background-animation" :class="{ visible: loaded }"></div>
 </template>
 
 <style scoped>
@@ -206,5 +209,11 @@ onMounted(() => {
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  opacity: 0;
+}
+
+#background-animation.visible {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
 }
 </style>
