@@ -21,13 +21,6 @@
   <footer class="footer-link-container">
     <a
       class="footer-link"
-      href="https://drive.google.com/file/d/1xYywYeWP9G_g1ps1HGQysF0HtaTAEb8e/view?usp=sharing"
-      target="_blank"
-    >
-      Resume
-    </a>
-    <a
-      class="footer-link"
       href="https://www.linkedin.com/in/alex-leong/"
       target="_blank"
     >
